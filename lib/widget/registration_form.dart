@@ -14,11 +14,13 @@ import 'existing_user_list.dart';
 class RegistrationForm extends StatefulWidget {
   final String prefillName;
   final String prefillHost;
+  final bool autoRegister;
 
   const RegistrationForm({
     super.key,
     this.prefillHost = '',
     this.prefillName = '',
+    this.autoRegister = false,
   });
 
   @override
@@ -41,9 +43,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
   @override
   void initState() {
     super.initState();
+    _initState();
+  }
 
+  void _initState() async {
     _nameController.text = widget.prefillName;
-    setupHostname();
+    await setupHostname();
 
     _nameController.addListener(clearErrors);
     _hostController.addListener(clearErrors);
@@ -53,9 +58,15 @@ class _RegistrationFormState extends State<RegistrationForm> {
     _submitFocusNode.addListener(checkFocus);
     _clearNameControllerFocus.addListener(checkFocus);
     _clearHostControllerFocus.addListener(checkFocus);
+
+    if (widget.autoRegister) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+          _register(); // Trigger registration after widget builds
+      });
+    }
   }
 
-  void setupHostname() async {
+  Future<void> setupHostname() async {
     final container = context.read<AppContainer>();
     SettingsController settingsController = container.settingsController;
 

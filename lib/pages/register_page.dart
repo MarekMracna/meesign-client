@@ -20,11 +20,15 @@ import '../widget/warning_banner.dart';
 class RegisterPage extends StatefulWidget {
   final String prefillName;
   final String prefillHost;
+  final bool autoRegister;
+  final bool cleanUsers;
 
   const RegisterPage({
     super.key,
     this.prefillHost = '',
     this.prefillName = '',
+    this.autoRegister = false,
+    this.cleanUsers = false,
   });
 
   @override
@@ -48,6 +52,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Future<void> _initApp() async {
     final container = context.read<AppContainer>();
+
+    if (widget.cleanUsers) {
+      final users = await container.userRepository.getAllUsers();
+      for (final user in users) {
+        await container.deleteDevice(user.did);
+        var tempSession = await container.createAnonymousSession(user.host);
+        await tempSession.deviceRepository.deleteLocalDevice(user.did.bytes);
+      }
+    }
 
     // Wait to get first stream value
     await Future.delayed(Duration(seconds: 0));
@@ -258,6 +271,7 @@ class _RegisterPageState extends State<RegisterPage> {
       child: RegistrationForm(
         prefillHost: widget.prefillHost,
         prefillName: widget.prefillName,
+        autoRegister: widget.autoRegister,
       ),
     );
   }

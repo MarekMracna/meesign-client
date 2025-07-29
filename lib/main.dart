@@ -43,6 +43,8 @@ void main(List<String> args) async {
       child: MeeSignClient(
         prefillHost: argResults['host'],
         prefillName: argResults['name'],
+        autoRegister: argResults['autoreg'],
+        cleanUsers: argResults['clean'],
       ),
     ),
   );
@@ -63,11 +65,15 @@ Future<void> _prepareWindowManager() async {
 class MeeSignClient extends StatelessWidget {
   final String? prefillHost;
   final String? prefillName;
+  final bool autoRegister;
+  final bool cleanUsers;
 
   const MeeSignClient({
     super.key,
     this.prefillHost,
     this.prefillName,
+    this.autoRegister = false,
+    this.cleanUsers = false,
   });
 
   @override
@@ -103,6 +109,8 @@ class MeeSignClient extends StatelessWidget {
             Routes.init: (_) => RegisterPage(
                   prefillHost: prefillHost ?? defaultHost,
                   prefillName: prefillName ?? '',
+                  autoRegister: autoRegister,
+                  cleanUsers: cleanUsers,
                 ),
           },
         );

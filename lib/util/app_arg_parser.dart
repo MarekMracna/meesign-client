@@ -16,6 +16,14 @@ class AppArgParser {
         help: 'display usage information',
         negatable: false,
       )
+      ..addFlag(
+        'autoreg',
+        help: 'try to automatically register',
+      )
+      ..addFlag(
+        'clean',
+        help: 'delete all users at start',
+      )
       ..addOption(
         'host',
         help: 'address of the server',
