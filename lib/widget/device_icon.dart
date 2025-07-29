@@ -59,17 +59,21 @@ class DeviceIcon extends StatelessWidget {
           session != null ? session.sync.subscribed : ValueNotifier(false),
       builder: (context, child) {
         return _buildBadge(context, name,
-            isOnline: session != null && session.sync.subscribed.value);
+            hasSession: session != null,
+            isSubscribed: session != null && session.sync.subscribed.value);
       },
     );
   }
 
   Widget _buildBadge(BuildContext context, String name,
-      {bool isOnline = false}) {
+      {bool hasSession = false,
+       bool isSubscribed = false}) {
     return Badge(
-      backgroundColor: isOnline
-          ? Theme.of(context).extension<CustomColors>()!.success
-          : Theme.of(context).colorScheme.error,
+      backgroundColor: !hasSession
+          ? Color(0xFFFF0000)
+          : !isSubscribed
+            ? Color(0xFF0000FF)
+            : Color(0xFF00FF00),
       smallSize: 8,
       child: CircleAvatar(
         child: Text(name.initials),
