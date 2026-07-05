@@ -287,6 +287,7 @@ abstract class ProtocolId {
   static const int Elgamal = 1;
   static const int Frost = 2;
   static const int Musig2 = 3;
+  static const int Dkls23 = 4;
 }
 
 abstract class Recipient {
@@ -313,8 +314,8 @@ final class AuthKey extends ffi.Struct {
   external Buffer csr;
 }
 
-const int KEYGEN_ROUNDS = 6;
-
-const int DECRYPT_ROUNDS = 2;
+const int KEYGEN_ROUNDS = 3;
 
 const int SIGN_ROUNDS = 3;
+
+const int DECRYPT_ROUNDS = 2;

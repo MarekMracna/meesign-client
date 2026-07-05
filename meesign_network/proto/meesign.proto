@@ -29,6 +29,7 @@ enum ProtocolType {
   ELGAMAL = 1;
   FROST = 2;
   MUSIG2 = 3;
+  DKLS23 = 4;
 }
 
 enum KeyType {

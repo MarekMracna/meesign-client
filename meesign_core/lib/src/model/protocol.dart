@@ -10,7 +10,8 @@ enum Protocol {
   gg18(10, 10, ThresholdType.tOfN),
   elgamal(6, 2, ThresholdType.tOfN),
   frost(4, 3, ThresholdType.tOfN, aid: '6a6366726f7374617070'),
-  musig2(2, 3, ThresholdType.nOfN, aid: '01ffff04050607081101');
+  musig2(2, 3, ThresholdType.nOfN, aid: '01ffff04050607081101'),
+  dkls23(3, 3, ThresholdType.tOfN);
 
   const Protocol(
     this.keygenRounds,
@@ -33,6 +34,7 @@ extension ProtocolConversion on Protocol {
         Protocol.elgamal => ProtocolId.Elgamal,
         Protocol.frost => ProtocolId.Frost,
         Protocol.musig2 => ProtocolId.Musig2,
+        Protocol.dkls23 => ProtocolId.Dkls23,
       };
 
   ProtocolType toNetwork() => switch (this) {
@@ -40,6 +42,7 @@ extension ProtocolConversion on Protocol {
         Protocol.elgamal => ProtocolType.ELGAMAL,
         Protocol.frost => ProtocolType.FROST,
         Protocol.musig2 => ProtocolType.MUSIG2,
+        Protocol.dkls23 => ProtocolType.DKLS23,
       };
 
   static Protocol fromNetwork(ProtocolType protocolType) =>
@@ -48,6 +51,7 @@ extension ProtocolConversion on Protocol {
         ProtocolType.ELGAMAL => Protocol.elgamal,
         ProtocolType.FROST => Protocol.frost,
         ProtocolType.MUSIG2 => Protocol.musig2,
+        ProtocolType.DKLS23 => Protocol.dkls23,
         _ => throw ArgumentError('Unknown protocol'),
       };
 }
