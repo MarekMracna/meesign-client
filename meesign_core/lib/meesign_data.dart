@@ -11,5 +11,6 @@ export 'src/data/key_store.dart';
 export 'src/data/network_dispatcher.dart';
 export 'src/data/support_services.dart';
 export 'src/data/task_repository.dart';
+export 'src/util/upload_service.dart';
 export 'src/data/user_repository.dart';
 export 'src/database/database.dart' show Database;

@@ -98,6 +98,41 @@ const RegistrationResponse$json = const {
 
 /// Descriptor for `RegistrationResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List registrationResponseDescriptor = $convert.base64Decode('ChRSZWdpc3RyYXRpb25SZXNwb25zZRIbCglkZXZpY2VfaWQYASABKAxSCGRldmljZUlkEiAKC2NlcnRpZmljYXRlGAIgASgMUgtjZXJ0aWZpY2F0ZQ==');
+@$core.Deprecated('Use uploadRequestDescriptor instead')
+const UploadRequest$json = const {
+  '1': 'UploadRequest',
+  '2': const [
+    const {'1': 'total_size', '3': 1, '4': 1, '5': 4, '10': 'totalSize'},
+  ],
+};
+
+/// Descriptor for `UploadRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadRequestDescriptor = $convert.base64Decode('Cg1VcGxvYWRSZXF1ZXN0Eh0KCnRvdGFsX3NpemUYASABKARSCXRvdGFsU2l6ZQ==');
+@$core.Deprecated('Use uploadChunkDescriptor instead')
+const UploadChunk$json = const {
+  '1': 'UploadChunk',
+  '2': const [
+    const {'1': 'request', '3': 1, '4': 1, '5': 11, '6': '.meesign.UploadRequest', '9': 0, '10': 'request'},
+    const {'1': 'data', '3': 2, '4': 1, '5': 12, '9': 0, '10': 'data'},
+  ],
+  '8': const [
+    const {'1': 'payload'},
+  ],
+};
+
+/// Descriptor for `UploadChunk`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadChunkDescriptor = $convert.base64Decode('CgtVcGxvYWRDaHVuaxIyCgdyZXF1ZXN0GAEgASgLMhYubWVlc2lnbi5VcGxvYWRSZXF1ZXN0SABSB3JlcXVlc3QSFAoEZGF0YRgCIAEoDEgAUgRkYXRhQgkKB3BheWxvYWQ=');
+@$core.Deprecated('Use uploadResponseDescriptor instead')
+const UploadResponse$json = const {
+  '1': 'UploadResponse',
+  '2': const [
+    const {'1': 'handle', '3': 1, '4': 1, '5': 12, '10': 'handle'},
+    const {'1': 'expires_on', '3': 2, '4': 1, '5': 4, '10': 'expiresOn'},
+  ],
+};
+
+/// Descriptor for `UploadResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List uploadResponseDescriptor = $convert.base64Decode('Cg5VcGxvYWRSZXNwb25zZRIWCgZoYW5kbGUYASABKAxSBmhhbmRsZRIdCgpleHBpcmVzX29uGAIgASgEUglleHBpcmVzT24=');
 @$core.Deprecated('Use groupRequestDescriptor instead')
 const GroupRequest$json = const {
   '1': 'GroupRequest',
@@ -243,13 +278,13 @@ const TaskUpdate$json = const {
   '1': 'TaskUpdate',
   '2': const [
     const {'1': 'task', '3': 1, '4': 1, '5': 12, '10': 'task'},
-    const {'1': 'data', '3': 2, '4': 3, '5': 12, '10': 'data'},
+    const {'1': 'data_handles', '3': 2, '4': 3, '5': 12, '10': 'dataHandles'},
     const {'1': 'attempt', '3': 3, '4': 1, '5': 13, '10': 'attempt'},
   ],
 };
 
 /// Descriptor for `TaskUpdate`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List taskUpdateDescriptor = $convert.base64Decode('CgpUYXNrVXBkYXRlEhIKBHRhc2sYASABKAxSBHRhc2sSEgoEZGF0YRgCIAMoDFIEZGF0YRIYCgdhdHRlbXB0GAMgASgNUgdhdHRlbXB0');
+final $typed_data.Uint8List taskUpdateDescriptor = $convert.base64Decode('CgpUYXNrVXBkYXRlEhIKBHRhc2sYASABKAxSBHRhc2sSIQoMZGF0YV9oYW5kbGVzGAIgAygMUgtkYXRhSGFuZGxlcxIYCgdhdHRlbXB0GAMgASgNUgdhdHRlbXB0');
 @$core.Deprecated('Use tasksRequestDescriptor instead')
 const TasksRequest$json = const {
   '1': 'TasksRequest',

@@ -15,12 +15,13 @@ class AnonymousSession {
       serverCerts: serverCerts,
       allowBadCerts: allowBadCerts,
     );
+    uploadService = UploadService(dispatcher);
 
     supportServices = SupportServices(dispatcher);
 
     deviceRepository =
         DeviceRepository(dispatcher, keyStore, database.deviceDao);
-    final taskSource = TaskSource(dispatcher);
+    final taskSource = TaskSource(dispatcher, uploadService);
     final taskDao = database.taskDao;
     groupRepository = GroupRepository(
       dispatcher,
@@ -38,6 +39,7 @@ class AnonymousSession {
   }
   final String host;
   late final NetworkDispatcher dispatcher;
+  late final UploadService uploadService;
   late final SupportServices supportServices;
 
   late final DeviceRepository deviceRepository;

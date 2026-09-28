@@ -226,6 +226,192 @@ class RegistrationResponse extends $pb.GeneratedMessage {
   void clearCertificate() => clearField(2);
 }
 
+class UploadRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'meesign'), createEmptyInstance: create)
+    ..a<$fixnum.Int64>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'totalSize', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  UploadRequest._() : super();
+  factory UploadRequest({
+    $fixnum.Int64? totalSize,
+  }) {
+    final _result = create();
+    if (totalSize != null) {
+      _result.totalSize = totalSize;
+    }
+    return _result;
+  }
+  factory UploadRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UploadRequest clone() => UploadRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UploadRequest copyWith(void Function(UploadRequest) updates) => super.copyWith((message) => updates(message as UploadRequest)) as UploadRequest; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static UploadRequest create() => UploadRequest._();
+  UploadRequest createEmptyInstance() => create();
+  static $pb.PbList<UploadRequest> createRepeated() => $pb.PbList<UploadRequest>();
+  @$core.pragma('dart2js:noInline')
+  static UploadRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadRequest>(create);
+  static UploadRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $fixnum.Int64 get totalSize => $_getI64(0);
+  @$pb.TagNumber(1)
+  set totalSize($fixnum.Int64 v) { $_setInt64(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTotalSize() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTotalSize() => clearField(1);
+}
+
+enum UploadChunk_Payload {
+  request, 
+  data, 
+  notSet
+}
+
+class UploadChunk extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, UploadChunk_Payload> _UploadChunk_PayloadByTag = {
+    1 : UploadChunk_Payload.request,
+    2 : UploadChunk_Payload.data,
+    0 : UploadChunk_Payload.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadChunk', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'meesign'), createEmptyInstance: create)
+    ..oo(0, [1, 2])
+    ..aOM<UploadRequest>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'request', subBuilder: UploadRequest.create)
+    ..a<$core.List<$core.int>>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'data', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  UploadChunk._() : super();
+  factory UploadChunk({
+    UploadRequest? request,
+    $core.List<$core.int>? data,
+  }) {
+    final _result = create();
+    if (request != null) {
+      _result.request = request;
+    }
+    if (data != null) {
+      _result.data = data;
+    }
+    return _result;
+  }
+  factory UploadChunk.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadChunk.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UploadChunk clone() => UploadChunk()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UploadChunk copyWith(void Function(UploadChunk) updates) => super.copyWith((message) => updates(message as UploadChunk)) as UploadChunk; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static UploadChunk create() => UploadChunk._();
+  UploadChunk createEmptyInstance() => create();
+  static $pb.PbList<UploadChunk> createRepeated() => $pb.PbList<UploadChunk>();
+  @$core.pragma('dart2js:noInline')
+  static UploadChunk getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadChunk>(create);
+  static UploadChunk? _defaultInstance;
+
+  UploadChunk_Payload whichPayload() => _UploadChunk_PayloadByTag[$_whichOneof(0)]!;
+  void clearPayload() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  UploadRequest get request => $_getN(0);
+  @$pb.TagNumber(1)
+  set request(UploadRequest v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasRequest() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearRequest() => clearField(1);
+  @$pb.TagNumber(1)
+  UploadRequest ensureRequest() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get data => $_getN(1);
+  @$pb.TagNumber(2)
+  set data($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasData() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearData() => clearField(2);
+}
+
+class UploadResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'UploadResponse', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'meesign'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'handle', $pb.PbFieldType.OY)
+    ..a<$fixnum.Int64>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'expiresOn', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  UploadResponse._() : super();
+  factory UploadResponse({
+    $core.List<$core.int>? handle,
+    $fixnum.Int64? expiresOn,
+  }) {
+    final _result = create();
+    if (handle != null) {
+      _result.handle = handle;
+    }
+    if (expiresOn != null) {
+      _result.expiresOn = expiresOn;
+    }
+    return _result;
+  }
+  factory UploadResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory UploadResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  UploadResponse clone() => UploadResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  UploadResponse copyWith(void Function(UploadResponse) updates) => super.copyWith((message) => updates(message as UploadResponse)) as UploadResponse; // ignore: deprecated_member_use
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static UploadResponse create() => UploadResponse._();
+  UploadResponse createEmptyInstance() => create();
+  static $pb.PbList<UploadResponse> createRepeated() => $pb.PbList<UploadResponse>();
+  @$core.pragma('dart2js:noInline')
+  static UploadResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<UploadResponse>(create);
+  static UploadResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get handle => $_getN(0);
+  @$pb.TagNumber(1)
+  set handle($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasHandle() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearHandle() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get expiresOn => $_getI64(1);
+  @$pb.TagNumber(2)
+  set expiresOn($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasExpiresOn() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearExpiresOn() => clearField(2);
+}
+
 class GroupRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'GroupRequest', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'meesign'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'name')
@@ -1016,7 +1202,7 @@ class Task extends $pb.GeneratedMessage {
 class TaskUpdate extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'TaskUpdate', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'meesign'), createEmptyInstance: create)
     ..a<$core.List<$core.int>>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'task', $pb.PbFieldType.OY)
-    ..p<$core.List<$core.int>>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'data', $pb.PbFieldType.PY)
+    ..p<$core.List<$core.int>>(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'dataHandles', $pb.PbFieldType.PY)
     ..a<$core.int>(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'attempt', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
@@ -1024,15 +1210,15 @@ class TaskUpdate extends $pb.GeneratedMessage {
   TaskUpdate._() : super();
   factory TaskUpdate({
     $core.List<$core.int>? task,
-    $core.Iterable<$core.List<$core.int>>? data,
+    $core.Iterable<$core.List<$core.int>>? dataHandles,
     $core.int? attempt,
   }) {
     final _result = create();
     if (task != null) {
       _result.task = task;
     }
-    if (data != null) {
-      _result.data.addAll(data);
+    if (dataHandles != null) {
+      _result.dataHandles.addAll(dataHandles);
     }
     if (attempt != null) {
       _result.attempt = attempt;
@@ -1070,7 +1256,7 @@ class TaskUpdate extends $pb.GeneratedMessage {
   void clearTask() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.List<$core.List<$core.int>> get data => $_getList(1);
+  $core.List<$core.List<$core.int>> get dataHandles => $_getList(1);
 
   @$pb.TagNumber(3)
   $core.int get attempt => $_getIZ(2);

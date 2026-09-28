@@ -14,6 +14,7 @@ import 'package:meesign_core/src/database/database.dart' as db;
 import 'package:meesign_core/src/model/task.dart';
 import 'package:meesign_core/src/util/default_map.dart';
 import 'package:meesign_core/src/util/logger_service.dart';
+import 'package:meesign_core/src/util/upload_service.dart';
 import 'package:meesign_core/src/util/uuid.dart';
 import 'package:meesign_native/meesign_native.dart';
 import 'package:meesign_network/grpc.dart' as rpc;
@@ -25,8 +26,9 @@ import 'package:synchronized/synchronized.dart';
 class StateException implements Exception {}
 
 class TaskSource {
-  TaskSource(this._dispatcher);
+  TaskSource(this._dispatcher, this._uploadService);
   final NetworkDispatcher _dispatcher;
+  final UploadService _uploadService;
 
   final Map<Uuid, BcastRespStream<rpc.Task>> _streams = HashMap();
 
@@ -35,12 +37,16 @@ class TaskSource {
     Uint8List tid,
     List<List<int>> data,
     int attempt,
-  ) =>
-      _dispatcher[did].updateTask(
-        rpc.TaskUpdate(data: data)
-          ..task = tid
-          ..attempt = attempt,
-      );
+  ) async {
+    final uploadResponses =
+        await Future.wait(data.map((item) => _uploadService.upload(did, item)));
+    final handles = uploadResponses.map((response) => response.handle);
+    return await _dispatcher[did].updateTask(
+      rpc.TaskUpdate(dataHandles: handles)
+        ..task = tid
+        ..attempt = attempt,
+    );
+  }
 
   Future<void> approve(Uuid did, Uuid tid, {required bool agree}) =>
       _dispatcher[did].decideTask(

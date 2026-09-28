@@ -25,6 +25,10 @@ class MeeSignClient extends $grpc.Client {
           ($0.RegistrationRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.RegistrationResponse.fromBuffer(value));
+  static final _$upload = $grpc.ClientMethod<$0.UploadChunk, $0.UploadResponse>(
+      '/meesign.MeeSign/Upload',
+      ($0.UploadChunk value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.UploadResponse.fromBuffer(value));
   static final _$sign = $grpc.ClientMethod<$0.SignRequest, $0.Task>(
       '/meesign.MeeSign/Sign',
       ($0.SignRequest value) => value.writeToBuffer(),
@@ -91,6 +95,12 @@ class MeeSignClient extends $grpc.Client {
       $0.RegistrationRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$register, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.UploadResponse> upload(
+      $async.Stream<$0.UploadChunk> request,
+      {$grpc.CallOptions? options}) {
+    return $createStreamingCall(_$upload, request, options: options).single;
   }
 
   $grpc.ResponseFuture<$0.Task> sign($0.SignRequest request,
@@ -176,6 +186,13 @@ abstract class MeeSignServiceBase extends $grpc.Service {
             ($core.List<$core.int> value) =>
                 $0.RegistrationRequest.fromBuffer(value),
             ($0.RegistrationResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.UploadChunk, $0.UploadResponse>(
+        'Upload',
+        upload,
+        true,
+        false,
+        ($core.List<$core.int> value) => $0.UploadChunk.fromBuffer(value),
+        ($0.UploadResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.SignRequest, $0.Task>(
         'Sign',
         sign_Pre,
@@ -337,6 +354,8 @@ abstract class MeeSignServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.ServerInfoRequest request);
   $async.Future<$0.RegistrationResponse> register(
       $grpc.ServiceCall call, $0.RegistrationRequest request);
+  $async.Future<$0.UploadResponse> upload(
+      $grpc.ServiceCall call, $async.Stream<$0.UploadChunk> request);
   $async.Future<$0.Task> sign($grpc.ServiceCall call, $0.SignRequest request);
   $async.Future<$0.Task> group($grpc.ServiceCall call, $0.GroupRequest request);
   $async.Future<$0.Task> decrypt(

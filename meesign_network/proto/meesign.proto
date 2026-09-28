@@ -4,6 +4,7 @@ package meesign;
 service MeeSign {
   rpc GetServerInfo(ServerInfoRequest) returns (ServerInfo);
   rpc Register(RegistrationRequest) returns (RegistrationResponse);
+  rpc Upload(stream UploadChunk) returns (UploadResponse); // auth required
   rpc Sign(SignRequest) returns (Task);
   rpc Group(GroupRequest) returns (Task);
   rpc Decrypt(DecryptRequest) returns (Task);
@@ -59,6 +60,22 @@ message RegistrationRequest {
 message RegistrationResponse {
   bytes device_id = 1;
   bytes certificate = 2; // cert in DER format
+}
+
+message UploadRequest {
+  uint64 total_size = 1;
+}
+
+message UploadChunk {
+  oneof payload {
+    UploadRequest request = 1;
+    bytes data = 2;
+  }
+}
+
+message UploadResponse {
+  bytes handle = 1;
+  uint64 expires_on = 2; // unix timestamp
 }
 
 message GroupRequest {
@@ -134,7 +151,7 @@ message Task {
 
 message TaskUpdate {
   bytes task = 1;
-  repeated bytes data = 2; // In case a given device controls multiple shares, send responses ordered by share indices
+  repeated bytes data_handles = 2; // In case a given device controls multiple shares, send responses ordered by share indices
   uint32 attempt = 3;
 }
 
