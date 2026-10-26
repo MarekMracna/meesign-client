@@ -265,6 +265,14 @@ void main() {
         tags: 'large',
       );
     });
+    group('dkls23', () {
+        test('2-2', () => testSignChallenge(Protocol.dkls23, n: 2, t: 2));
+        test('3-3', () => testSignChallenge(Protocol.dkls23, n: 3, t: 3));
+        test(
+          '3-[1, 2, 3]',
+          () => testSignChallenge(Protocol.dkls23, shares: [1, 2, 3], t: 3),
+        );
+    });
   });
 
   group('decrypt', () {
