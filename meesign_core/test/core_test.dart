@@ -47,6 +47,7 @@ void main() {
   late Database database;
   late KeyStore keyStore;
   late NetworkDispatcher dispatcher;
+  late UploadService uploadService;
   late DeviceRepository deviceRepository;
   late GroupRepository groupRepository;
   late FileRepository fileRepository;
@@ -73,12 +74,13 @@ void main() {
       // TODOis there a better way to set the default?
       port: int.tryParse(meesignServerPort ?? '') ?? 1337,
     );
+    uploadService = UploadService(dispatcher);
     deviceRepository = DeviceRepository(
       dispatcher,
       keyStore,
       database.deviceDao,
     );
-    final taskSource = TaskSource(dispatcher);
+    final taskSource = TaskSource(dispatcher, uploadService);
     final taskDao = database.taskDao;
     groupRepository = GroupRepository(
       dispatcher,
